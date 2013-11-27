@@ -14,7 +14,7 @@
 
 <ul>
   <% @person.phone_numbers.each do |phone| %>
-    <li><%= phone.number %></li>
+    <li><%= phone.number %> <%= link_to('edit', edit_phone_number_path(phone)) %></li>
   <% end %>
 </ul>
 

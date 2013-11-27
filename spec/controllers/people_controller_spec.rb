@@ -31,6 +31,11 @@ describe PeopleController do
   let(:valid_session) { {} }
 
   describe "GET index" do
+    
+    before(:each) do
+      Person.destroy_all
+    end
+
     it "assigns all people as @people" do
       person = Person.create! valid_attributes
       get :index, {}, valid_session
