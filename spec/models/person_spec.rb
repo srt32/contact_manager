@@ -19,4 +19,8 @@ describe Person do
     expect(person).not_to be_valid
   end
 
+  it 'has an array of phone numbers' do
+    expect(person.phone_numbers).to eq([])
+  end
+
 end
