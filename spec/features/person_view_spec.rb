@@ -33,7 +33,7 @@ describe 'the person view', type: :feature do
       expect(page).to have_content('boo@ex.com')
     end
 
-    it 'has links to edit email addresses ' do
+    it 'has links to edit email addresses' do
       person.email_addresses.each do |email|
         expect(page).to have_link('edit', href: edit_email_address_path(email))
       end
@@ -49,6 +49,19 @@ describe 'the person view', type: :feature do
       expect(current_path).to eq(person_path(person))
       expect(page).to have_content('yargh@ex.com')
       expect(page).to_not have_content(old_address)
+    end
+
+    it 'has links to delete email addresses' do
+      person.email_addresses.each do |email|
+        expect(page).to have_link('delete', href: email_address_path(email))
+      end
+    end
+
+    it 'deletes an email address' do
+      email_address = person.email_addresses.first
+      first(:link, 'delete').click
+      expect(current_path).to eq(person_path(person))
+      expect(page).to_not have_content(email_address.address)
     end
 
   end
