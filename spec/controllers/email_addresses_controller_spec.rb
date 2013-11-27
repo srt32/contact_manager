@@ -93,10 +93,10 @@ describe EmailAddressesController do
         assigns(:email_address).should eq(email_address)
       end
 
-      it "redirects to the email_address" do
+      it "redirects to the email_address's person" do
         email_address = EmailAddress.create! valid_attributes
         put :update, {:id => email_address.to_param, :email_address => valid_attributes}, valid_session
-        response.should redirect_to(email_address)
+        response.should redirect_to(eve)
       end
     end
 
